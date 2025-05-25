@@ -19,8 +19,9 @@ jobs:
         run: docker build -t task-manager:latest .
 
       - name: Run Task Manager
-        run: docker run --rm \
-          -e GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} \
-          -e GITHUB_REPOSITORY=${{ github.repository }} \
-          -e GITHUB_REF=${{ github.ref }} \
-          task-manager:latest
+        run: |
+          docker run --rm \
+            -e GITHUB_TOKEN="${{ secrets.GITHUB_TOKEN }}" \
+            -e GITHUB_REPOSITORY="${{ github.repository }}" \
+            -e GITHUB_REF="${{ github.ref }}" \
+            task-manager:latest
